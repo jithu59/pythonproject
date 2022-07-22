@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark justify-content-between">
+  <a class="navbar-brand" href="#"> Prime CINE HUB</a>
+  <form class="form-inline">
+    <a href="{% url 'movieapp:add_movie' %}" class="btn btn-outline-success">Upload Movies</a>
+  </form>
+</nav>
+
+<div class="container">
+    <div class="row">
+        {% for i in movie_list %}
+        <div class="col-md-3 py-1">
+            <div class="card">
+                <img src="{{ i.img.url }}" class="card-img-top" alt="..." width="100" height="200">
+                <div class="card-body">
+                    <h6 class="card-title">{{i.name}}</h6>
+                    <p class="card-text"></p>
+                    <a href="{% url 'movieapp:detail' i.id %}" class="btn btn-info">View Details</a>
+                </div>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>
